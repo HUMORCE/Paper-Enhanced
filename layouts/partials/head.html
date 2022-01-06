@@ -1,0 +1,74 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  {{ if not .IsHome }}
+  <title>{{ .Title }} - {{ site.Title }}</title>
+  {{ else }}
+  <title>{{ site.Title }}</title>
+  {{ end }}
+
+  <!-- Meta -->
+  {{ if eq .Kind "page" }}
+  <meta name="description" content="{{ .Summary }}">
+  <meta name="author" content="{{ .Params.Author | default site.Params.Author }}">
+  {{ else }}
+  <meta name="description" content="{{ site.Params.description }}">
+  <meta name="author" content="{{ site.Params.Author }}">
+  {{ end }}
+
+  <!-- Styles & Scripts -->
+  {{ $app_css := resources.Get "css/app.css" }}
+  <!---->
+  {{ $custom_css := resources.Get "css/custom.css" }}
+  <!---->
+  {{ $hljs := resources.Get "js/highlight.min.js" }}
+  <!---->
+  {{ $hljs_css := resources.Get "css/dracula.css" }}
+  <!---->
+  {{ $css := slice $app_css $custom_css | resources.Concat "css/app.css" | minify }}
+  <link rel="preload stylesheet" as="style" href="{{ $css.Permalink }}">
+
+  {{ if and .IsPage (not site.Params.disableHLJS) }}
+  <link rel="preload stylesheet" as="style" href="{{ $hljs_css.Permalink }}">
+  <script defer src="{{ $hljs.Permalink }}"
+    onload="hljs.configure({ ignoreUnescapedHTML: true }); hljs.highlightAll();"></script>
+  {{ end }}
+
+  <!-- Preload -->
+  <link rel="preload" as="image" href="{{ `static/theme.png` | absURL }}">
+
+  {{ range $.Scratch.Get "social-list" }}
+  <link rel="preload" as="image" href="{{ printf `static/%s.svg` . | absURL }}">
+  {{ end }}
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ `static/apple-touch-icon.png` | absURL }}">
+  <link rel="icon" type="image/svg+xml" href="{{ `static/favicon.svg` | absURL }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ `static/favicon-192x192.png` | absURL }}">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="{{ `static/favicon-32x32.png` | absURL }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ `static/favicon-16x16.png` | absURL }}">
+  <link rel="mask-icon" href="{{ `static/safari-pinned-tab.svg` | absURL }}">
+
+  <!-- Generator -->
+  {{ hugo.Generator }}
+
+  <!-- RSS -->
+  {{ range .AlternativeOutputFormats }}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
+  {{ end }}
+
+  <!-- Misc -->
+  {{ if or hugo.IsProduction (eq site.Params.env "production") }}
+  <!---->
+  {{ template "_internal/google_analytics.html" . }}
+  <!---->
+  {{ template "_internal/opengraph.html" . }}
+  <!---->
+  {{ template "_internal/schema.html" . }}
+  <!---->
+  {{ template "_internal/twitter_cards.html" . }}
+  {{ end }}
+</head>

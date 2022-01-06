@@ -1,0 +1,8 @@
+{{ if .Params.showToc }}
+    <aside>
+        <header>
+            <h2>{{ .Title }}</h2>
+        </header>
+        {{ .TableOfContents }}
+    </aside>
+{{ end }}

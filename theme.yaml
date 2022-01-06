@@ -1,0 +1,18 @@
+name: "Paper-Enhanced"
+license: "MIT"
+licenselink: "https://github.com/HUMORCE/Paper-Enhanced/blob/master/LICENSE"
+description: "A simple, clean, flexible Hugo theme"
+homepage: "https://github.com/HUMORCE/Paper-Enhanced/"
+tags: ["Responsive", "Simple", "Clean", "Light", "White", "Blog"]
+features: ["Responsive", "One Column", "Blog"]
+min_version: "0.57.1"
+
+author:
+  name: "HUMORCE"
+  homepage: "https://humorce.com/"
+
+original:
+  name: "Paper"
+  author: "nanxiaobei"
+  homepage: "https://lee.so/"
+  repo: "https://github.com/nanxiaobei/hugo-paper"

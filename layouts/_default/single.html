@@ -1,0 +1,56 @@
+{{ define "main" }}
+
+<article class="post-single">
+  {{ if not .Params.HideTitle }}
+  <header class="post-title">
+    <h1>{{ .Title }}</h1>
+    {{ if not .Params.HideMeta }}
+    <p>
+      <time>{{ .Date | time.Format ":date_medium" }}</time>
+      <span>{{ .Params.Author | default site.Params.Author }}</span>
+    </p>
+    {{ end }}
+  </header>
+  {{ end }}
+  <section class="post-content">{{ .Content }}</section>
+
+  <!-- Post Tags -->
+  {{ if .Params.tags }}
+  <footer class="post-tags">
+    {{ range .Params.tags }} {{ $href := print (absURL "tags/") (urlize .) }}
+    <a href="{{ $href }}">{{ . }}</a>
+    {{ end }}
+  </footer>
+  {{ end }}
+
+  <!-- Post Nav -->
+  {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}<!---->
+  {{ if and (gt (len $pages) 1) (in $pages . ) }}
+  <nav class="post-nav">
+    {{ with $pages.Next . }}
+      {{ if not (.Param "Portal") }}
+    <a class="prev" href="{{ .Permalink }}"><span>←</span><span>{{ .Name }}</span></a>
+      {{ end }}
+    {{ end }}
+    {{ with $pages.Prev . }}
+      {{ if not (.Param "Portal") }}
+    <a class="next" href="{{ .Permalink }}"><span>{{ .Name }}</span><span>→</span></a>
+      {{ end }}
+    {{ end }}
+  </nav>
+  {{ end }}
+
+  <!-- Disqus -->
+  {{ if and site.DisqusShortname (not (eq .Params.comments false)) }}
+  <div id="disqus_thread" class="post-comments"></div>
+  <script>
+    var disqusShortname = '{{ site.DisqusShortname }}';
+    var script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  {{ end }}
+</article>
+
+{{ end }}
