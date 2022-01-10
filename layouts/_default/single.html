@@ -1,13 +1,13 @@
 {{ define "main" }}
 
 <article class="post-single">
-  {{ if not .Params.HideTitle }}
+  {{ if not .Params.hideTitle }}
   <header class="post-title">
     <h1>{{ .Title }}</h1>
-    {{ if not .Params.HideMeta }}
+    {{ if not .Params.hideMeta }}
     <p>
       <time>{{ .Date | time.Format ":date_medium" }}</time>
-      <span>{{ .Params.Author | default site.Params.Author }}</span>
+      <span>{{ .Params.author | default site.Params.author }}</span>
     </p>
     {{ end }}
   </header>
