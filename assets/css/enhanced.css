@@ -2,3 +2,18 @@
  * Paper Enhanced
  * https://github.com/HUMORCE/Paper-Enhanced
  */
+
+ /* Footnote
+ -------------------------------------------------- */
+a[href^="#fn:"] {
+  font-weight: normal;
+  border-bottom: none;
+}
+
+a[href^="#fn:"]::before {
+  content: '[';
+}
+
+a[href^="#fn:"]::after {
+  content: ']';
+}
