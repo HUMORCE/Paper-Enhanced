@@ -1,15 +1,35 @@
-{{ if site.Params.staticVersion.enable }}
+{{ if site.Params.statics.version.enable }}
   {{ $seed := "paper-enhanced" }}
   {{ $random := delimit (shuffle (split (md5 $seed) "" )) "" }}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ `static/apple-touch-icon.png` | absURL }}?v={{ site.Params.staticVersion.value | default $random }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ `static/favicon-32x32.png` | absURL }}?v={{ site.Params.staticVersion.value | default $random }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ `static/favicon-16x16.png` | absURL }}?v={{ site.Params.staticVersion.value | default $random }}">
-  <link rel="mask-icon" href="{{ `static/safari-pinned-tab.svg` | absURL }}?v={{ site.Params.staticVersion.value | default $random }}">
-  <link rel="shortcut icon" href="{{ `static/favicon.ico` | absURL }}?v={{ site.Params.staticVersion.value | default $random }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ `apple-touch-icon.png` | absURL }}?v={{ site.Params.statics.version.value | default $random }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ `favicon-32x32.png` | absURL }}?v={{ site.Params.statics.version.value | default $random }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ `favicon-16x16.png` | absURL }}?v={{ site.Params.statics.version.value | default $random }}">
+  <link rel="manifest" href="{{ `site.webmanifest` | absURL }}?v={{ site.Params.statics.version.value | default $random }}">
+  {{ if site.Params.statics.favicon.maskColor }}
+  <link rel="mask-icon" href="{{ `safari-pinned-tab.svg` | absURL }}?v={{ site.Params.statics.version.value | default $random }}" color="{{ site.Params.statics.favicon.maskColor }}">
+  {{ else }}
+  <link rel="mask-icon" href="{{ `safari-pinned-tab.svg` | absURL }}?v={{ site.Params.statics.version.value | default $random }}">
+  {{ end }}
+  {{ if site.Params.statics.favicon.tileColor }}
+  <meta name="msapplication-TileColor" content="{{ site.Params.statics.favicon.tileColor }}">
+  {{ end }}
+  {{ if site.Params.statics.favicon.themeColor }}
+  <meta name="theme-color" content="{{ site.Params.statics.favicon.themeColor }}">
+  {{ end }}
 {{ else }}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ `static/apple-touch-icon.png` | absURL }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ `static/favicon-32x32.png` | absURL }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ `static/favicon-16x16.png` | absURL }}">
-  <link rel="mask-icon" href="{{ `static/safari-pinned-tab.svg` | absURL }}">
-  <link rel="shortcut icon" href="{{ `static/favicon.ico` | absURL }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ `apple-touch-icon.png` | absURL }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ `favicon-32x32.png` | absURL }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ `favicon-16x16.png` | absURL }}">
+  <link rel="manifest" href="{{ `site.webmanifest` | absURL }}">
+  {{ if site.Params.statics.favicon.maskColor }}
+  <link rel="mask-icon" href="{{ `safari-pinned-tab.svg` | absURL }}" color="{{ site.Params.statics.favicon.maskColor }}">
+  {{ else }}
+  <link rel="mask-icon" href="{{ `safari-pinned-tab.svg` | absURL }}">
+  {{ end }}
+  {{ if site.Params.statics.favicon.tileColor }}
+  <meta name="msapplication-TileColor" content="{{ site.Params.statics.favicon.tileColor }}">
+  {{ end }}
+  {{ if site.Params.statics.favicon.themeColor }}
+  <meta name="theme-color" content="{{ site.Params.statics.favicon.themeColor }}">
+  {{ end }}
 {{ end }}
