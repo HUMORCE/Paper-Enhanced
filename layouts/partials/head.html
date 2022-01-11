@@ -22,13 +22,15 @@
   <!-- Styles & Scripts -->
   {{ $app_css := resources.Get "css/app.css" }}
   <!---->
+  {{ $enhanced_css := resources.Get "css/enhanced.css" }}
+  <!---->
   {{ $custom_css := resources.Get "css/custom.css" }}
   <!---->
   {{ $hljs := resources.Get "js/highlight.min.js" }}
   <!---->
   {{ $hljs_css := resources.Get "css/dracula.css" }}
   <!---->
-  {{ $css := slice $app_css $custom_css | resources.Concat "css/app.css" | minify }}
+  {{ $css := slice $app_css $enhanced_css $custom_css | resources.Concat "css/app.css" | minify }}
   <link rel="preload stylesheet" as="style" href="{{ $css.Permalink }}">
 
   {{ if and .IsPage (not site.Params.disableHLJS) }}
