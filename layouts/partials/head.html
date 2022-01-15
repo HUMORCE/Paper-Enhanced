@@ -28,7 +28,7 @@
   <!---->
   {{ $custom_css := (resources.Match "css/custom/*.css") | resources.Concat "css/custom.css" }}
   <!---->
-  {{ $css := slice $app_css $enhanced_css $syntax_css $custom_css | resources.Concat "css/app.css" | minify }}
+  {{ $css := slice $app_css $enhanced_css $syntax_css $custom_css | resources.Concat "css/bundle.css" | minify }}
   <link rel="preload stylesheet" as="style" href="{{ $css.Permalink }}">
 
   <!-- Preload -->
