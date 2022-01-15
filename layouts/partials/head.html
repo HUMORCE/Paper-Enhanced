@@ -24,20 +24,12 @@
   <!---->
   {{ $enhanced_css := resources.Get "css/enhanced.css" }}
   <!---->
+  {{ $syntax_css := resources.Get "css/syntax.css" }}
+  <!---->
   {{ $custom_css := resources.Get "css/custom.css" }}
   <!---->
-  {{ $hljs := resources.Get "js/highlight.min.js" }}
-  <!---->
-  {{ $hljs_css := resources.Get "css/dracula.css" }}
-  <!---->
-  {{ $css := slice $app_css $enhanced_css $custom_css | resources.Concat "css/app.css" | minify }}
+  {{ $css := slice $app_css $enhanced_css $syntax_css $custom_css | resources.Concat "css/app.css" | minify }}
   <link rel="preload stylesheet" as="style" href="{{ $css.Permalink }}">
-
-  {{ if and .IsPage (not site.Params.disableHLJS) }}
-  <link rel="preload stylesheet" as="style" href="{{ $hljs_css.Permalink }}">
-  <script defer src="{{ $hljs.Permalink }}"
-    onload="hljs.configure({ ignoreUnescapedHTML: true }); hljs.highlightAll();"></script>
-  {{ end }}
 
   <!-- Preload -->
   <link rel="preload" as="image" href="{{ `static/theme.png` | absURL }}">
