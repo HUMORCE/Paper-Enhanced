@@ -22,11 +22,11 @@
   <!-- Styles & Scripts -->
   {{ $app_css := resources.Get "css/app.css" }}
   <!---->
-  {{ $enhanced_css := resources.Get "css/enhanced.css" }}
+  {{ $enhanced_css := (resources.Match "css/enhanced/*.css") | resources.Concat "css/enhanced.css" }}
   <!---->
   {{ $syntax_css := resources.Get "css/syntax.css" }}
   <!---->
-  {{ $custom_css := resources.Get "css/custom.css" }}
+  {{ $custom_css := (resources.Match "css/custom/*.css") | resources.Concat "css/custom.css" }}
   <!---->
   {{ $css := slice $app_css $enhanced_css $syntax_css $custom_css | resources.Concat "css/app.css" | minify }}
   <link rel="preload stylesheet" as="style" href="{{ $css.Permalink }}">
