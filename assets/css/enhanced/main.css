@@ -3,7 +3,7 @@
  * https://github.com/HUMORCE/Paper-Enhanced
  */
 
- /* Footnote
+/* Footnote
  -------------------------------------------------- */
 a[href^="#fn:"] {
   font-weight: normal;
@@ -11,15 +11,23 @@ a[href^="#fn:"] {
 }
 
 a[href^="#fn:"]::before {
-  content: '[';
+  content: "[";
 }
 
 a[href^="#fn:"]::after {
-  content: ']';
+  content: "]";
 }
 
- /* Code Block
+/* Code Block
  -------------------------------------------------- */
 .post-content code {
-  font-family: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono",
+    "Droid Sans Mono", "Courier New", monospace;
+}
+
+/* Post Tags
+ -------------------------------------------------- */
+.post-tags a {
+  margin-bottom: 0.5rem;
 }
