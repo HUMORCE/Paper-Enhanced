@@ -18,16 +18,21 @@ a[href^="#fn:"]::after {
   content: "]";
 }
 
-/* Code Block
- -------------------------------------------------- */
-.post-content code {
-  font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono",
-    "Droid Sans Mono", "Courier New", monospace;
-}
-
 /* Post Tags
  -------------------------------------------------- */
 .post-tags a {
   margin-bottom: 0.5rem;
+}
+
+/* Fonts
+ -------------------------------------------------- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.post-content code {
+  font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono",
+    "Droid Sans Mono", "Courier New", monospace;
 }
