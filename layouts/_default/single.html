@@ -24,18 +24,14 @@
   {{ end }}
 
   <!-- Post Nav -->
-  {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}<!---->
+  {{ $pages := where (where site.RegularPages "Type" "in" site.Params.mainSections) "Params.portal" "!=" true }}
   {{ if and (gt (len $pages) 1) (in $pages . ) }}
   <nav class="post-nav">
     {{ with $pages.Next . }}
-      {{ if not (.Param "Portal") }}
     <a class="prev" href="{{ .Permalink }}"><span>←</span><span>{{ .Name }}</span></a>
-      {{ end }}
     {{ end }}
     {{ with $pages.Prev . }}
-      {{ if not (.Param "Portal") }}
     <a class="next" href="{{ .Permalink }}"><span>{{ .Name }}</span><span>→</span></a>
-      {{ end }}
     {{ end }}
   </nav>
   {{ end }}
