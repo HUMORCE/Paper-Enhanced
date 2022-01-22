@@ -1,4 +1,4 @@
-{{ if site.Params.statics.version.enable }}
+{{ if site.Params.statics.version.enabled }}
   {{ $seed := "paper-enhanced" }}
   {{ $random := delimit (shuffle (split (md5 $seed) "" )) "" }}
   <link rel="apple-touch-icon" sizes="180x180" href="{{ `apple-touch-icon.png` | absURL }}?v={{ site.Params.statics.version.value | default $random }}">
