@@ -9,6 +9,14 @@
 {{ end }}
 
 <html lang="{{ site.LanguageCode }}">
+  <noscript>
+    <style>
+      body {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+  </noscript>
   {{ partial "head.html" . }}
 
   <body class="not-ready" data-menu="{{ isset site.Menus `main` }}">
