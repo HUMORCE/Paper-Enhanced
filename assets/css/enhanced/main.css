@@ -36,3 +36,30 @@ body {
     "Roboto Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono",
     "Droid Sans Mono", "Courier New", monospace;
 }
+
+/* Scrollbar
+ -------------------------------------------------- */
+
+html {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width:6px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height:6px;
+}
+
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #383838;
+}
+
+/* ::-webkit-scrollbar-thumb:hover{
+  background: #aaa;
+} */
