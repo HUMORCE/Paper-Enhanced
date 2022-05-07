@@ -10,6 +10,13 @@
   <title>{{ site.Title }}</title>
   {{ end }}
 
+  <style>
+    body {
+      visibility: hidden;
+      opacity: 0;
+    }
+  </style>
+
   <!-- Meta -->
   {{ if eq .Kind "page" }}
   <meta name="description" content="{{ .Summary }}">

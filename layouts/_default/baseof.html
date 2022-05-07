@@ -12,6 +12,18 @@
   {{ partial "head.html" . }}
 
   <body class="not-ready" data-menu="{{ isset site.Menus `main` }}">
+    <script>
+      document.body.style.visibility = 'visible';
+      document.body.style.opacity = 1;
+    </script>
+    <noscript>
+      <style>
+        body {
+          visibility: visible;
+          opacity: 1;
+        }
+      </style>
+    </noscript>
     {{ partial "header.html" . }}
 
     <main class="main">{{ block "main" . }}{{ end }}</main>
