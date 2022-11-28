@@ -10,14 +10,8 @@
   <title>{{ site.Title }}</title>
   {{ end }}
 
-  <style>
-    body {
-      visibility: hidden;
-      opacity: 0;
-    }
-  </style>
-
   <!-- Meta -->
+  <meta name="theme-color">
   {{ if eq .Kind "page" }}
   <meta name="description" content="{{ .Summary }}">
   <meta name="author" content="{{ .Params.Author | default site.Params.author }}">
@@ -39,7 +33,17 @@
   <link rel="preload stylesheet" as="style" href="{{ $css.Permalink }}">
 
   <!-- Preload -->
-  <link rel="preload" as="image" href="{{ `static/theme.png` | absURL }}">
+  {{ $theme_icon := "theme.png" }}
+  {{ if site.Params.monoDarkIcon }}
+    {{ $theme_icon := "theme.svg" }}
+  {{ end }}
+  <link rel="preload" as="image" href="{{ $theme_icon | absURL }}" />
+
+    {{ $avatar_url := $.Scratch.Get "avatar_url" }}
+
+    {{ if $avatar_url }}
+    <link rel="preload" as="image" href="{{ $avatar_url }}" />
+    {{ end }}
 
   {{ range $.Scratch.Get "social-list" }}
   <link rel="preload" as="image" href="{{ printf `static/%s.svg` . | absURL }}">
@@ -53,18 +57,28 @@
 
   <!-- RSS -->
   {{ range .AlternativeOutputFormats }}
-  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
+  <link
+    rel="{{ .Rel }}"
+    type="{{ .MediaType.Type }}"
+    href="{{ .Permalink }}"
+    title="{{ site.Title }}"
+  />
   {{ end }}
 
   <!-- Misc -->
   {{ if or hugo.IsProduction (eq site.Params.env "production") }}
   <!---->
+  {{ template "_internal/google_analytics_async.html" . }}
+  <!---->
   {{ template "_internal/google_analytics.html" . }}
+  <!---->
+  {{ template "_internal/google_news.html" . }}
   <!---->
   {{ template "_internal/opengraph.html" . }}
   <!---->
   {{ template "_internal/schema.html" . }}
   <!---->
   {{ template "_internal/twitter_cards.html" . }}
+  <!---->
   {{ end }}
 </head>
